@@ -4,32 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="google-signin-client_id"
-      content="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com"
-    />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/main.css" />
     <!-- JS -->
-    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <title>Youbified</title>
   </head>
 
   <body>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div
+    <!-- <div
       id="g_id_onload"
       data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com"
       data-callback="handleCredentialResponse"
     ></div>
-    <div class="g_id_signin" data-type="standard"></div>
+    <div class="g_id_signin" data-type="standard"></div> -->
 
-    <!-- <script src="https://apis.google.com/js/api.js"></script> -->
+    <div
+      id="g_id_onload"
+      :data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com"
+      data-login_uri="https://127.0.0.1:5501"
+      data-auto_prompt="false"
+    ></div>
+    <div
+      class="g_id_signin"
+      data-type="standard"
+      data-size="large"
+      data-theme="outline"
+      data-text="sign_in_with"
+      data-shape="rectangular"
+      data-logo_alignment="left"
+    ></div>
     <script>
       function handleCredentialResponse(response) {
         console.log(response);
         const responsePayload = decodeJwtResponse(response.credential);
-
         console.log("ID: " + responsePayload.sub);
         console.log("Full Name: " + responsePayload.name);
         console.log("Given Name: " + responsePayload.given_name);
