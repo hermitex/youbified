@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A web app that allows a user to create, update and delete livestream events",
   "main": "index.js",
-
   "scripts": {
     "test": "run test",
     "start": "NODE_ENV=production node",
@@ -28,6 +27,7 @@
     "dotenv": "^16.0.1"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "google-auth-library": "^8.0.3"
   }
 }
