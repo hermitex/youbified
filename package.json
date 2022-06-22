@@ -1,0 +1,29 @@
+{
+  "name": "youbified",
+  "version": "1.0.0",
+  "description": "A web app that allows a user to create, update and delete livestream events",
+  "main": "index.js",
+  "scripts": {
+    "test": "run test",
+    "start": "NODE_ENV=production node",
+    "dev": "node -r dotenv/config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hermitex/youbified.git"
+  },
+  "keywords": [
+    "youtube",
+    "livesstream",
+    "youtube-api"
+  ],
+  "author": "Tiberius Mairura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hermitex/youbified/issues"
+  },
+  "homepage": "https://github.com/hermitex/youbified#readme",
+  "devDependencies": {
+    "dotenv": "^16.0.1"
+  }
+}
