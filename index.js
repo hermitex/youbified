@@ -1,6 +1,16 @@
-// import dotenv from './node_modules/dotenv'
+// import dotenv from 'dotenv'
 
 // dotenv.config();
 
-const API_KEY = 'AIzaSyC4sIqO6MbIkFTzWdjDr-4ulv4DpVydH7s'
-const Client_ID = '711203027374-ifu796qdf1tn2flaho92h9dvbukit70b.apps.googleusercontent.com'
+const express = require('express');
+const app = express();
+const path = require('path');
+
+app.use(express.static(path.join(__dirname)));
+
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.listen(process.env.PORT ||3000);

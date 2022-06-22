@@ -11,20 +11,17 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/main.css" />
     <!-- JS -->
-    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <title>Youbified</title>
   </head>
 
   <body>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <div
       id="g_id_onload"
       data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com"
       data-callback="handleCredentialResponse"
     ></div>
     <div class="g_id_signin" data-type="standard"></div>
-
-    <!-- <script src="https://apis.google.com/js/api.js"></script> -->
     <script>
       function handleCredentialResponse(response) {
         console.log(response);
