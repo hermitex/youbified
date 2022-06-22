@@ -25,10 +25,10 @@ function authenticate() {
     .then(
       function () {
         alert("Sign-in successful");
-      },
-      function (err) {
-        alert("Error signing in", err.message);
       }
+    //   function (err) {
+    //     alert("Error signing in", err.message);
+    //   }
     );
 }
 
