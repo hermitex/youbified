@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A web app that allows a user to create, update and delete livestream events",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "run test",
     "start": "NODE_ENV=production node",
