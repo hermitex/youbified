@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "run test",
-    "start": "NODE_ENV=production node",
+    "start": "node index.js",
     "dev": "node -r dotenv/config"
   },
   "repository": {
