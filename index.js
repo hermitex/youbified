@@ -1,7 +1,3 @@
-// import dotenv from 'dotenv'
-
-// dotenv.config();
-
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -14,3 +10,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(process.env.PORT ||3000);
+
+console.log('listening on port ' + process.env.PORT)
