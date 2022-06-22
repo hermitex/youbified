@@ -13,28 +13,12 @@
   </head>
 
   <body>
-    <!-- <div
+    <div
       id="g_id_onload"
       data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com"
       data-callback="handleCredentialResponse"
     ></div>
-    <div class="g_id_signin" data-type="standard"></div> -->
-
-    <div
-      id="g_id_onload"
-      :data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com"
-      data-login_uri="https://127.0.0.1:5501"
-      data-auto_prompt="false"
-    ></div>
-    <div
-      class="g_id_signin"
-      data-type="standard"
-      data-size="large"
-      data-theme="outline"
-      data-text="sign_in_with"
-      data-shape="rectangular"
-      data-logo_alignment="left"
-    ></div>
+    <div class="g_id_signin" data-type="standard"></div>
     <script>
       function handleCredentialResponse(response) {
         console.log(response);
