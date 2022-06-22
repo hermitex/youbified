@@ -1,3 +1,7 @@
+const decodeJwtResponse = (credentials) => {
+  return credentials;
+};
+
 function handleCredentialResponse(response) {
   console.log(response.credential);
   const responsePayload = decodeJwtResponse(response.credential);
