@@ -17,7 +17,7 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <div
       id="g_id_onload"
-      data-client_id="YOUR_CLIENT_ID
+      data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com
 
 "
       data-callback="handleCredentialResponse"
@@ -31,6 +31,7 @@
        */
 
       // Make sure the client is loaded and sign-in is complete before calling this method.
+      function handleCredentialResponse(response) { return response}
       function execute() {
         return gapi.client.youtube.liveBroadcasts
           .insert({
@@ -53,9 +54,9 @@
         });
       });
     </script>
-    <button onclick="authenticate().then(loadClient)">
+    <!-- <button onclick="authenticate().then(loadClient)">
       authorize and load
-    </button>
+    </button> -->
     <button onclick="execute()">execute</button>
 
     <script src="./src/app.js"></script>
