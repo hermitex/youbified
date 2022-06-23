@@ -17,6 +17,12 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(express.static(path.join(__dirname)));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../index.html"));
+});
+
 // Create a livestream
 app.get("/create", (req, res) => {
   const options = {
