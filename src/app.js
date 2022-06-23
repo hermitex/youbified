@@ -25,11 +25,11 @@ function authenticate() {
     .then(
       function () {
         alert("Sign-in successful");
+      },
+      function (err) {
+        alert("Error signing in", err);
       }
-    //   function (err) {
-    //     alert("Error signing in", err.message);
-    //   }
-    );
+    ).then(loadClient);
 }
 
 function loadClient() {
