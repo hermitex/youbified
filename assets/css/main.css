@@ -2,16 +2,11 @@ body{
     height: 100vh;
     width: 100vw;
     color: #fff !important;
+    overflow-y: auto;
 }
 
-.inner-wrapper{
- 
-    display: flex !important;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    align-content: center;
-    margin: 0 auto;
+.container > div>div{
+    margin: 0.5rem 0;    
 }
 
 .video-container{
@@ -19,6 +14,27 @@ body{
     width: 60vw;
 }
 
-.stream-container{
-    height: 5rem !important;
+.stream-container {
+    max-height: 27rem !important;
+    overflow: auto;
+    padding: 1.5rem 1.5rem;
+    border-radius: 5px;
+
+}
+
+form{
+
+    background-color: gray;
+    border-radius: 5px;
+height: 27rem;
+
+}
+
+.top-menu{
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
 }

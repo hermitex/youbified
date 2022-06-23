@@ -16,105 +16,89 @@
     <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
   <body class="bg-main">
-
     <div class="container">
       <div class="inner-wapper">
         <div class="container">
-          <div class="row stream-container">
-            <div class="col-md-8">
+          <div class="row">
+            <div class="col-xs-12 top-menu">
               <button
                 class="btn btn-primary"
-                id="createNewLiveStream"
+                id="create-new-live-stream"
                 type="button"
               >
                 Create
               </button>
               <button
                 class="btn btn-primary"
-                id="viewAllLiveStreams"
+                id="view-all-live-streams"
                 type="button"
               >
                 View All Events
               </button>
+            </div>
+            <div class="col-md-8 stream-container bg-light">
               <table class="table text-white">
                 <thead>
-                  <tr>    
-                    <th scope="col">Select</th>               
+                  <tr>
+                    <th scope="col">Select</th>
                     <th scope="col">Date Created</th>
                     <th scope="col">Live Link</th>
                     <th scope="col">Status</th>
                     <th scope="col" colspan="4">Actions</th>
-                  
                   </tr>
                 </thead>
-                <tbody id="stream-list">
-                             
-                </tbody>
+                <tbody id="stream-list"></tbody>
               </table>
             </div>
             <div class="col-md-4">
-              <form class="row g-3">
+              <form class="row" id="displayStreamDetailsForm">
                 <div class="col-md-6">
-                  <label for="inputEmail4" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" />
+                  <label for="input-date-created" class="form-label">Date Created</label>
+                  <input value="" type="email" class="form-control" id="input-date-created" />
                 </div>
                 <div class="col-md-6">
-                  <label for="inputPassword4" class="form-label"
-                    >Password</label
+                  <label for="input-live-stream-link" class="form-label"
+                    >Live Link</label
                   >
                   <input
+                  value=""
+                    type="text"
+                    class="form-control"
+                    id="input-live-stream-link"
+                  />
+                </div>
+                <div class="col-12">
+                  <label for="input-server-link" class="form-label">Server Link</label>
+                  <input
+                  value=""
+                    type="text"
+                    class="form-control"
+                    id="input-server-link"
+                    placeholder="https://example.com"
+                  />  
+                </div>
+                <!-- <div class="spinner-border text-success spinner" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>  -->
+                <div class="col-12">
+                  <label for="input-server-key" class="form-label"
+                    >Server Key</label
+                  >
+                  <input
+                  value=""
                     type="password"
                     class="form-control"
-                    id="inputPassword4"
+                    id="input-server-key"
+                    placeholder="https://anotherexample.com"
                   />
                 </div>
-                <div class="col-12">
-                  <label for="inputAddress" class="form-label">Address</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="inputAddress"
-                    placeholder="1234 Main St"
-                  />
-                </div>
-                <div class="col-12">
-                  <label for="inputAddress2" class="form-label"
-                    >Address 2</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="inputAddress2"
-                    placeholder="Apartment, studio, or floor"
-                  />
-                </div>
+                
                 <div class="col-md-6">
-                  <label for="inputCity" class="form-label">City</label>
-                  <input type="text" class="form-control" id="inputCity" />
+                  <label for="input-broadcast-status" class="form-label">Broadcast Status</label>
+                  <input value="" type="text" class="form-control" id="input-broadcast-status" />
                 </div>
-                <div class="col-md-4">
-                  <label for="inputState" class="form-label">State</label>
-                  <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
-                <div class="col-md-2">
-                  <label for="inputZip" class="form-label">Zip</label>
-                  <input type="text" class="form-control" id="inputZip" />
-                </div>
-                <div class="col-12">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="gridCheck"
-                    />
-                    <label class="form-check-label" for="gridCheck">
-                      Check me out
-                    </label>
-                  </div>
-                </div>
+                                
+      
                 <div class="col-12">
                   <button type="submit" class="btn btn-warning">Update</button>
                 </div>
