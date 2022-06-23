@@ -1,50 +1,50 @@
-  function authenticate() {
-        return gapi.auth2
-          .getAuthInstance()
-          .signIn({
-            scope: "https://www.googleapis.com/auth/youtube.force-ssl",
-          })
-          .then(
-            function () {
-              alert("Sign-in successful");
-            },
-            function (err) {
-              alert("Error signing in", err);
-            }
-          );
-      }
-      function loadClient() {
-        gapi.client.setApiKey("AIzaSyDh5GjniJociXMPX2C8cghEwd0wejtQYJc");
-        return gapi.client
-          .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-          .then(
-            function () {
-              console.log("GAPI client loaded for API");
-            },
-            function (err) {
-              console.error("Error loading GAPI client for API", err);
-            }
-          );
-      }
 
-       function execute() {
-        return gapi.client.youtube.liveBroadcasts
-          .insert({
-            resource: {},
-          })
-          .then(
-            function (response) {
-              // Handle the results here (response.result has the parsed body).
-              alert("Response", response);
-            },
-            function (err) {
-              alert("Execute error", err);
-            }
-          );
-      }
-      gapi.load("client:auth2", function () {
-        gapi.auth2.init({
-          client_id:
-            "542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com",
-        });
-      });
+// enable CORS without external module
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(express.static(path.join(__dirname)));
+
+
+// parse application/json
+app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+ 
+// request handlers
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+
+app.get('/test', (req, res) => {
+    res.status(200).json({ message: 'Enable CORS in Node.js - Clue Mediator' });
+  });
+
+// Create a livestream
+app.get("/create", (req, res) => {
+  const options = {
+    method: "POST",
+    url: "https://api.liveapi.com/live_streams",
+    headers: {
+      Accept: "application/json",
+      Authorization:
+        "Basic aGQxZ25OU2JkNzVnOmQ5M0ZEN3dTeEkzcjc5SnNtblQ3SWltRnllOUFERkw3a0FuNQ==",
+    },
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {
+      let data = response.data;
+      res.json(data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+});
+
+// console.log('listening on port ' + process.env.PORT)

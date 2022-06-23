@@ -1,76 +1,53 @@
-const decodeJwtResponse = (credentials) => {
-  var base64Url = credentials.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
+const baseUrl = "http://localhost:3001";
 
-  return JSON.parse(jsonPayload);
+const createNewLiveStreamBtn = document.querySelector("#createNewLiveStream");
+const viewAllLiveStreamsBtn = document.querySelector("#viewAllLiveStreams");
+
+/**
+ * @createNewLiveStream
+ * Creates a new live stream
+ * Returns a promise that is resolved when the stream is created successfully
+ * The successfully resolved promise is an object with information about the live stream
+ */
+const createNewLiveStream = () => {
+  fetch(`${baseUrl}/create`)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
 };
 
-// function handleCredentialResponse(response) {
-//   const responsePayload = decodeJwtResponse(response.credential);
-//   console.log("ID: " + responsePayload.sub);
-//   console.log("Full Name: " + responsePayload.name);
-//   console.log("Given Name: " + responsePayload.given_name);
-//   console.log("Family Name: " + responsePayload.family_name);
-//   console.log("Image URL: " + responsePayload.picture);
-//   console.log("Email: " + responsePayload.email);
-// }
+/**
+ * @viewAllLiveStreams
+ * Returns a promise that is resolved when the list of streams is returned successfully
+ * The successfully resolved promise is an object with a list of streams
+ */
+const viewAllLiveStreams = () => {
+  fetch(`${baseUrl}/streams`)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+};
 
-function authenticate() {
-  return gapi.auth2
-    .getAuthInstance()
-    .signIn({ scope: "https://www.googleapis.com/auth/youtube.force-ssl" })
-    .then(
-      function () {
-        console.log("Sign-in successful");
-      },
-      function (err) {
-        console.error("Error signing in", err);
-      }
-    );
-}
+const getLiveStremById = (id) => {
+  fetch(`${baseUrl}/streams/${id}`)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+};
 
-function loadClient() {
-  gapi.client.setApiKey("AIzaSyDh5GjniJociXMPX2C8cghEwd0wejtQYJc");
-  return gapi.client
-    .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-    .then(
-      function () {
-        console.log("GAPI client loaded for API");
-      },
-      function (err) {
-        console.error("Error loading GAPI client for API", err);
-      }
-    );
-}
+const upDateLiveStremById = (id) => {
+  fetch(`${baseUrl}/streams/${id}`)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+};
 
-function execute() {
-  return gapi.client.youtube.liveBroadcasts
-    .insert({
-      resource: {},
-    })
-    .then(
-      function (response) {
-        // Handle the results here (response.result has the parsed body).
-        console.log("Response", response);
-      },
-      function (err) {
-        console.error("Execute error", err.body);
-      }
-    );
-}
+const deleteLiveStremById = (id) => {
+  fetch(`${baseUrl}/streams/${id}`)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+};
 
-gapi.load("client:auth2", function () {
-  gapi.auth2.init({
-    client_id:
-      "542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com",
-  });
-});
+createNewLiveStreamBtn.addEventListener("click", createNewLiveStream);
+viewAllLiveStreamsBtn.addEventListener("click", viewAllLiveStreams);

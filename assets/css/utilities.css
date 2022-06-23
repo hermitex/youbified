@@ -1,0 +1,35 @@
+*,html{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.bg-main{
+    background-color: 0A1929
+}
+
+.bg-primary {
+  background-color: #5090d3;
+}
+
+.bg-light {
+  background-color: #6f7e8c;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-light {
+  color: rgb(178, 186, 194);
+}
+
+.button {
+  border-color: rgb(30, 73, 118);
+  border-radius: 5px;
+  border-bottom-style: solid;
+}
+
+.text-secondary {
+  color: #66b2ff;
+}
