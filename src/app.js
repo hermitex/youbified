@@ -21,6 +21,7 @@ function authenticate() {
     .getAuthInstance()
     .signIn({
       scope: "https://www.googleapis.com/auth/youtube.force-ssl",
+      plugin_name:'Youbified'
     })
     .then(
       function () {
