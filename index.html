@@ -9,26 +9,19 @@
     <link rel="stylesheet" href="./assets/css/main.css" />
     <!-- JS -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- <script src="https://apis.google.com/js/api.js"></script> -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/client:plusone.js" type="application/javascript"></script>
     <title>Youbified</title>
   </head>
 
   <body>
     <div
       id="g_id_onload"
-      data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com
-
-"
+      data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com"
       data-callback="handleCredentialResponse"
     ></div>
     <div class="g_id_signin" data-type="standard"></div>
-    <script>
-     
-      function handleCredentialResponse(response) {
-        return response;
-      }
-    </script>
-
+    <button onclick="execute()">execute</button>
     <script src="./src/app.js"></script>
   </body>
 </html>
