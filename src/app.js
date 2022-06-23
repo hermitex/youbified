@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:3001";
+// const baseUrl = "http://localhost:3001";
+const baseUrl = "https://youbified.herokuapp.com";
 
 const createNewLiveStreamBtn = document.querySelector("#createNewLiveStream");
 const viewAllLiveStreamsBtn = document.querySelector("#viewAllLiveStreams");
