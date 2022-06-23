@@ -8,13 +8,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/main.css" />
     <!-- JS -->
-    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
-    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <script src="https://apis.google.com/js/api.js"></script> -->
     <title>Youbified</title>
   </head>
 
   <body>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <div
       id="g_id_onload"
       data-client_id="542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com
@@ -24,40 +23,11 @@
     ></div>
     <div class="g_id_signin" data-type="standard"></div>
     <script>
-      /**
-       * Sample JavaScript code for youtube.liveBroadcasts.insert
-       * See instructions for running APIs Explorer code samples locally:
-       * https://developers.google.com/explorer-help/code-samples#javascript
-       */
-
-      // Make sure the client is loaded and sign-in is complete before calling this method.
-      function handleCredentialResponse(response) { return response}
-      function execute() {
-        return gapi.client.youtube.liveBroadcasts
-          .insert({
-            resource: {},
-          })
-          .then(
-            function (response) {
-              // Handle the results here (response.result has the parsed body).
-              alert("Response", response);
-            },
-            function (err) {
-              alert("Execute error", err);
-            }
-          );
+     
+      function handleCredentialResponse(response) {
+        return response;
       }
-      gapi.load("client:auth2", function () {
-        gapi.auth2.init({
-          client_id:
-            "542407401873-ibaetrs6gh4cu749u7hvg2vagr238psh.apps.googleusercontent.com",
-        });
-      });
     </script>
-    <!-- <button onclick="authenticate().then(loadClient)">
-      authorize and load
-    </button> -->
-    <button onclick="execute()">execute</button>
 
     <script src="./src/app.js"></script>
   </body>
