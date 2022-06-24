@@ -13,6 +13,12 @@ const inputLiveStreamLink = document.querySelector("#input-live-stream-link");
 const inputServerLink = document.querySelector("#input-server-link");
 const inputServerKey = document.querySelector("#input-server-key");
 const inputBroadcastStatus = document.querySelector("#input-broadcast-status");
+const liveStraemIframe = document.querySelector("#stream-event-container");
+
+let spinner = `<div class="spinner-grow text-danger" style="height: 2.5rem; width: 2.5rem; margin: 0 auto" role="status">
+<span class="visually-hidden">Loading...</span>
+</div>
+`
 
 const keys = [inputLiveStreamLink, inputServerLink, inputServerKey];
 /**
@@ -24,7 +30,7 @@ const keys = [inputLiveStreamLink, inputServerLink, inputServerKey];
 const createNewLiveStream = () => {
   fetch(`${baseUrl}/create`)
     .then((response) => response.json())
-    .then((response) =>{
+    .then((response) => {
       alert("Stream created successfully");
       viewAllLiveStreams();
     })
@@ -52,12 +58,15 @@ const viewAllLiveStreams = () => {
         let deleteBtn = document.createElement("button");
         deleteBtn.classList.add("btn");
         deleteBtn.classList.add("btn-danger");
-        deleteBtn.textContent = "Delete";
+        deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
         deleteBtn.addEventListener("click", deleteStream);
         let attendBtn = document.createElement("button");
         attendBtn.classList.add("btn");
         attendBtn.classList.add("btn-info");
-        attendBtn.textContent = "Attend";
+        let span = document.createElement("span");
+        span.textContent = " Attend";
+        attendBtn.innerHTML = '<i class="fa-solid fa-calendar-check"></i>';
+        attendBtn.appendChild(span);
         attendBtn.addEventListener("click", attendEvent);
 
         let deleteBtnTd = document.createElement("td");
@@ -107,8 +116,8 @@ const formatDate = (stream) => {
 };
 
 const getLiveStremById = async (id) => {
-  let response = await fetch(`${baseUrl}/streams/${id}`);
   try {
+    let response = await fetch(`${baseUrl}/streams/${id}`);
     let data = await response.json();
     return data;
   } catch (error) {
@@ -139,10 +148,10 @@ const deleteLiveStreamById = async (id) => {
 };
 
 const deleteStream = async (stream) => {
-  if (confirm('Are you sure you want to delete this stream?')) {
+  if (confirm("Are you sure you want to delete this stream?")) {
     let isSuccess = await deleteLiveStreamById(
       stream.target.parentNode.parentNode.id
-    ).then((response) => response);  
+    ).then((response) => response);
     if (isSuccess) {
       alert("Stream deleted successfully");
       viewAllLiveStreams();
@@ -154,8 +163,20 @@ const deleteStream = async (stream) => {
   }
 };
 
-const attendEvent = (stream) => {
-  getLiveStremById(stream.target.parentNode.parentNode.id);
+const attendEvent = async (stream) => {
+  let id = stream.target.parentNode.parentNode.id;
+  stream = await getLiveStremById(id).then((response) => response);
+  let iframe = document.createElement("iframe");
+  iframe.setAttribute("src", "https://www.youtube.com/embed/zpOULjyy-n8?rel=0");
+  iframe.setAttribute("title", "Live stream event");
+  iframe.setAttribute("allowfullscreen", true);
+  iframe.src = stream.playback.embed_url;
+  liveStraemIframe.innerHTML = spinner;
+  setTimeout(() => {
+    liveStraemIframe.innerHTML = "";
+    liveStraemIframe.appendChild(iframe);
+  }, 6000);
+  document.getElementById("stream-event-container").scrollIntoView();
 };
 
 const copyLink = (stream) => {

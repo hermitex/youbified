@@ -33,7 +33,7 @@ form {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 2rem;
   border-radius: 5px;
 }
