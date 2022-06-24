@@ -24,7 +24,10 @@ const keys = [inputLiveStreamLink, inputServerLink, inputServerKey];
 const createNewLiveStream = () => {
   fetch(`${baseUrl}/create`)
     .then((response) => response.json())
-    .then((response) => console.log(response))
+    .then((response) =>{
+      alert("Stream created successfully");
+      viewAllLiveStreams();
+    })
     .catch((err) => console.error(err));
 };
 
@@ -142,6 +145,7 @@ const deleteStream = async (stream) => {
     ).then((response) => response);  
     if (isSuccess) {
       alert("Stream deleted successfully");
+      viewAllLiveStreams();
     } else {
       alert(
         "Problem deleting stream: " + stream.target.parentNode.parentNode.id
