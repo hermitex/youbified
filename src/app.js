@@ -128,26 +128,27 @@ const deleteLiveStreamById = async (id) => {
         "Access-Control-Allow-Methods": "DELETE",
       },
     });
-    let data = response.json();
-    return data;
+    let data = await response.json();
+    return data.success;
   } catch (error) {
     return error;
   }
 };
 
-const deleteStream = (stream) => {
+const deleteStream = async (stream) => {
   if (`Are you sure you want to delete all live streams?`) {
-    let isSuccess = deleteLiveStreamById(
+   let isSuccess = await deleteLiveStreamById(
       stream.target.parentNode.parentNode.id
     ).then((response) => response);
-    alert(isSuccess.success);
-    if (isSuccess.success) {
-      alert("Stream deleted successfully");
-    } else {
-      alert(
-        "Problem deleting stream: " + stream.target.parentNode.parentNode.id
-      );
-    }
+    console.log(isSuccess)
+    // alert(isSuccess.success);
+    // if (isSuccess.success) {
+    //   alert("Stream deleted successfully");
+    // } else {
+    //   alert(
+    //     "Problem deleting stream: " + stream.target.parentNode.parentNode.id
+    //   );
+    // }
   }
 };
 
