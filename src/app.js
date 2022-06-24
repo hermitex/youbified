@@ -139,10 +139,8 @@ const deleteStream = async (stream) => {
   if (`Are you sure you want to delete all live streams?`) {
     let isSuccess = await deleteLiveStreamById(
       stream.target.parentNode.parentNode.id
-    ).then((response) => response);
-
-    alert(isSuccess.success);
-    if (isSuccess.success) {
+    ).then((response) => response);  
+    if (isSuccess) {
       alert("Stream deleted successfully");
     } else {
       alert(
