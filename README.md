@@ -64,7 +64,7 @@ As a user you should be able to:
 
 ****
 
-- Clone to this repo by running the command : git clone <https://github.com/hermitex/youbified.git>
+- Clone to this repo by running the command : `git clone https://github.com/hermitex/youbified.git`
 - Unzip the downloaded files in a folder of choice.
 - Open the folder with your favorite CLI tool.
 - Run `npm install` on your terminal from inside the root folder of the project
