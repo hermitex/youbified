@@ -14,6 +14,7 @@ const inputServerLink = document.querySelector("#input-server-link");
 const inputServerKey = document.querySelector("#input-server-key");
 const inputBroadcastStatus = document.querySelector("#input-broadcast-status");
 
+const keys = [inputLiveStreamLink, inputServerLink, inputServerKey];
 /**
  * @createNewLiveStream
  * Creates a new live stream
@@ -27,6 +28,11 @@ const createNewLiveStream = () => {
     .catch((err) => console.error(err));
 };
 
+const isOnline = (status) =>
+  status == "online"
+    ? '<span class="text-success b-1">Online</span>'
+    : '<span class="text-warning b-1">Offline</span>';
+
 /**
  * @viewAllLiveStreams
  * Returns a promise that is resolved when the list of streams is returned successfully
@@ -37,7 +43,7 @@ const viewAllLiveStreams = () => {
   fetch(`${baseUrl}/streams`)
     .then((response) => response.json())
     .then((response) => {
-      response.docs.forEach((stream) => {
+      response.docs.forEach((stream, i) => {
         let tr = document.createElement("tr");
         tr.id = stream._id;
         let deleteBtn = document.createElement("button");
@@ -75,7 +81,8 @@ const viewAllLiveStreams = () => {
         linkTd.appendChild(input);
 
         let statusTd = document.createElement("td");
-        statusTd.textContent = stream.broadcasting_status;
+
+        statusTd.innerHTML = isOnline(stream.broadcasting_status);
 
         tr.appendChild(selectTd);
         tr.appendChild(dateTd);
@@ -90,15 +97,9 @@ const viewAllLiveStreams = () => {
     .catch((err) => console.error(err));
 };
 
-// viewAllLiveStreams();
+viewAllLiveStreams();
 
 const formatDate = (stream) => {
-  if (
-    Date().split(" ").splice(1, 3).join(" ") ===
-    Date(stream.creation_time).split(" ").splice(1, 3).join(" ")
-  ) {
-    return "Today";
-  }
   return Date(stream.creation_time).split(" ").splice(1, 3).join(" ");
 };
 
@@ -119,9 +120,14 @@ const upDateLiveStremById = (id) => {
     .catch((err) => console.error(err));
 };
 
-const deleteLiveStremById = async (id) => {
+const deleteLiveStreamById = async (id) => {
   try {
-    let response = await fetch(`${baseUrl}/streams/${id}`);
+    let response = await fetch(`${baseUrl}/streams/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Access-Control-Allow-Methods": "DELETE",
+      },
+    });
     let data = response.json();
     return data;
   } catch (error) {
@@ -131,32 +137,36 @@ const deleteLiveStremById = async (id) => {
 
 const deleteStream = (stream) => {
   if (`Are you sure you want to delete all live streams?`) {
-    let isSuccess = deleteLiveStremById(
+    let isSuccess = deleteLiveStreamById(
       stream.target.parentNode.parentNode.id
-    ).then((response) => response.json());
-    alert(isSuccess);
-    if (isSuccess) {
+    ).then((response) => response);
+    alert(isSuccess.success);
+    if (isSuccess.success) {
       alert("Stream deleted successfully");
     } else {
-      alert("Problem deleting stream: " + stream.target.parentNode.id);
+      alert(
+        "Problem deleting stream: " + stream.target.parentNode.parentNode.id
+      );
     }
   }
 };
 
 const attendEvent = (stream) => {
-  console.log(getLiveStremById(stream.target.parentNode.parentNode.id));
+  getLiveStremById(stream.target.parentNode.parentNode.id);
 };
 
 const copyLink = (stream) => {
   let link = stream.target.value;
-  navigator.clipboard.writeText(link).then(
-    function () {
-      alert("Copying to clipboard was successful!");
-    },
-    function (err) {
-      alert("Could not copy link: ", err);
-    }
-  );
+  if (confirm("Copy link to clipboard?")) {
+    navigator.clipboard.writeText(link).then(
+      function () {
+        alert("Copying to clipboard was successful!");
+      },
+      function (err) {
+        alert("Could not copy link: ", err);
+      }
+    );
+  }
 };
 
 const displayStreamDetails = (stream) => {
@@ -178,5 +188,21 @@ const handlecheckEvent = async (event) => {
   }
 };
 
+const showServerKey = (e) => {
+  e.target.type = "text";
+  e.target.value = e.target.value;
+};
+
+const hideServerKey = (e) => {
+  e.target.type = "password";
+};
+
+for (let key of keys) {
+  key.setAttribute("readOnly", true);
+  key.addEventListener("click", copyLink);
+}
+
 createNewLiveStreamBtn.addEventListener("click", createNewLiveStream);
 viewAllLiveStreamsBtn.addEventListener("click", viewAllLiveStreams);
+inputServerKey.addEventListener("focus", showServerKey);
+inputServerKey.addEventListener("blur", hideServerKey);
