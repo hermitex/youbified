@@ -18,7 +18,7 @@ const liveStraemIframe = document.querySelector("#stream-event-container");
 let spinner = `<div class="spinner-grow text-danger" style="height: 2.5rem; width: 2.5rem; margin: 0 auto" role="status">
 <span class="visually-hidden">Loading...</span>
 </div>
-`
+`;
 
 const keys = [inputLiveStreamLink, inputServerLink, inputServerKey];
 /**
@@ -164,7 +164,7 @@ const deleteStream = async (stream) => {
 };
 
 const attendEvent = async (stream) => {
-  let id = stream.target.parentNode.parentNode.id;
+  let id = stream.target.parentNode.parentNode.parentNode.id;
   stream = await getLiveStremById(id).then((response) => response);
   let iframe = document.createElement("iframe");
   iframe.setAttribute("src", "https://www.youtube.com/embed/zpOULjyy-n8?rel=0");
